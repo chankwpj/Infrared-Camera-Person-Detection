@@ -38,11 +38,11 @@ function [ storage ] = FindBoundingBox( regions, group, imgmaxx, imgmaxy )
     for i = 1:size(storage,1)
        if mod(i,2) == 1 %X
             if storage(i,2) > imgmaxx
-                storage(i,2) = imgmaxx
+                storage(i,2) = imgmaxx;
             end
        else
             if storage(i,2) > imgmaxy
-                storage(i,2) = imgmaxy
+                storage(i,2) = imgmaxy;
             end
        end
     end

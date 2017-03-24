@@ -1,9 +1,16 @@
 function [ descriptor ] = GenerateDCTDiscriptor( im )
 %GENERATEDCTDISCRIPTOR Summary of this function goes here
 %   Detailed explanation goes here
-    if size(im) ~= [32 16]
+    if (length(size(im)) >= 3)
+        im = rgb2gray(im);
+    end
+    s = size(im);
+    h = s(1);
+    w = s(2);
+    if h ~= 32 || w ~=16
         im = imresize(im, [32 ,16]);
     end
+    size(im)
     descriptor = zeros(1,441);
     index = 1;
     %Sliding Window
