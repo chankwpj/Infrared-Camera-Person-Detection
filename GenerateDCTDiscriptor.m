@@ -1,6 +1,8 @@
 function [ descriptor ] = GenerateDCTDiscriptor( im )
-%GENERATEDCTDISCRIPTOR Summary of this function goes here
-%   Detailed explanation goes here
+% GENERATE DCT DISCRIPTOR 
+%1. configure the size of the image
+%2. moving windows by windows with overlapping
+
     if (length(size(im)) >= 3)
         im = rgb2gray(im);
     end
@@ -10,7 +12,6 @@ function [ descriptor ] = GenerateDCTDiscriptor( im )
     if h ~= 32 || w ~=16
         im = imresize(im, [32 ,16]);
     end
-    size(im)
     descriptor = zeros(1,441);
     index = 1;
     %Sliding Window

@@ -1,7 +1,6 @@
 function [Mdl] = TrainNaiveBayesClassifier(positiveImagePaths, negativeImagePaths)
 %Getting positive and negative data set to train NaiveBasesClassifier by
-%DCT
-%Detailed explanation goes here
+%Generate DCT discriptor of each data and feed it to Bayes Classifier
 
 index = 1;
 labels = [];
@@ -33,10 +32,12 @@ for i_file = 1:numberOfImages
             maxx = storage(i,2);
             maxy = storage(i+1,2);
             mser = im(miny:maxy, minx:maxx);
-            descriptor = GenerateDCTDiscriptor(mser); %get dct resize in method
-            table(index, 1:441) = descriptor;
-            labels = [labels, 0];
-            index = index +1 ;
+            if (FilterNonHumanMSER(minx,miny,maxx,maxy)) % check mser ratio
+                descriptor = GenerateDCTDiscriptor(mser); %get dct resize in method
+                table(index, 1:441) = descriptor;
+                labels = [labels, 0];
+                index = index +1 ;
+            end
         end
     end
     

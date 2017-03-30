@@ -1,5 +1,5 @@
 function [ storage ] = FindBoundingBox( regions, group, imgmaxx, imgmaxy )
-    % check the extream coordinate value of groups
+    % find the extream coordinate values of groups
     % each group find xmin max ymin ymax
     % use matrix as storage like below
     % gp1 xmin xmax
@@ -9,6 +9,8 @@ function [ storage ] = FindBoundingBox( regions, group, imgmaxx, imgmaxy )
     maxGroupID = max(group);
     storage = zeros((maxGroupID)*2, 2);
     storage(:,1) = 10000;
+    %based on the group, generate thoes ellipses, and find the extream
+    %coordinates 
     for i = 1:length(group)
         xy = regions(i).Location;
         axy = regions(i).Axes;
@@ -33,14 +35,17 @@ function [ storage ] = FindBoundingBox( regions, group, imgmaxx, imgmaxy )
         end
     end
     storage = round(storage);
+    %delete points where outside the box
     storage(storage < 1 ) = 1;
     
     for i = 1:size(storage,1)
        if mod(i,2) == 1 %X
+           %delete points where outside the box
             if storage(i,2) > imgmaxx
                 storage(i,2) = imgmaxx;
             end
        else
+           %delete points where outside the box
             if storage(i,2) > imgmaxy
                 storage(i,2) = imgmaxy;
             end
