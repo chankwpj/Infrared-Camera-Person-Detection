@@ -55,7 +55,7 @@ for i_file = 1:numberOfImages
 end
 
 %% training
-Mdl = fitcnb(table,labels');
+Mdl = fitcnb(table,labels);
 return
 
 end

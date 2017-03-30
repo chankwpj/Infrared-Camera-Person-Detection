@@ -1,12 +1,10 @@
 close all; clear; clc;
 
-path_root = '/media/c1531993/C058-0E28/flir_17_Sept_2013/';
-% path_root = 'F:/';
+% path_root = '/media/c1531993/C058-0E28/flir_17_Sept_2013/';
+path_root = 'F:\flir_17_Sept_2013';
 addpath(genpath(path_root));
 
-path_training_positives = fullfile(path_root,'train/positives');
-% path_training_negatives = fullfile(path_root,'flir_17_Sept_2013/train/negatives1');
-path_testing = fullfile(path_root,'/Test');
+path_training_positives = fullfile(path_root,'train\positives');
 
 %% Training Data Paths
 
@@ -32,31 +30,18 @@ for nFolder = 5:12
     end
 end
 
-
-%{
-files = dir(fullfile(path_training_positives,'*.png'));
-numberOfImages = length(files);
-positiveFullPath = {};
-fileIndex = 1;
-for i_file = 1:5:numberOfImages
-    positiveFullPath{fileIndex} = fullfile(path_training_positives,files(i_file).name);
-    fileIndex = fileIndex + 1; 
-end
-
-files = dir(fullfile(path_training_negatives,'*.png'));
-numberOfImages = length(files);
-negativeFullPath = {};
-for i_file = 1:numberOfImages
-    negativeFullPath{i_file} = fullfile(path_training_negatives,files(i_file).name);
-end
-%}
 %% Train Naive Bayes
 Mdl = TrainNaiveBayesClassifier(positiveFullPath, negativeFullPath)
+save classifier Mdl
+
+%%
+% Mdl = load('classifier.mat')
+% Mdl = Mdl.Mdl
 
 %% test real data
 clear im
 % im = rgb2gray(imread('/media/c1531993/C058-0E28/Test/p1.jpg'));
-im = rgb2gray(imread('/media/c1531993/C058-0E28/StableSet/HumanBg/t.jpg'));
+im = rgb2gray(imread('F:/StableSet/HumanBg/t.jpg'));
 % im = imread('F:/Test/f1.png');
 [regions,cc] = detectMSERFeatures(im);
 
@@ -88,6 +73,8 @@ shapeInserterP = vision.ShapeInserter('Shape','Rectangles','BorderColor','Custom
 'CustomBorderColor', uint8([0 255 0]));
 shapeInserterN = vision.ShapeInserter('Shape','Rectangles','BorderColor','Custom',...
 'CustomBorderColor', uint8([255 0 0]));
+shapeInserterB = vision.ShapeInserter('Shape','Rectangles','BorderColor','Custom',...
+'CustomBorderColor', uint8([0 0 255]));
 
 
 RGB = cat(3, im, im, im);
@@ -108,10 +95,10 @@ for i = 1:2:length(storage)
         if label == 1
             RGB = shapeInserterP(RGB, rec); % if is positive draw the green "box" 
         else
-            RGB = shapeInserterN(RGB, rec); % else red box
+            RGB = shapeInserterB(RGB, rec); % else red box
         end
     else
-        RGB = shapeInserterN(RGB, rec); % else red box
+        RGB = shapeInserterN(RGB, rec); % blue box
     end
 end
 

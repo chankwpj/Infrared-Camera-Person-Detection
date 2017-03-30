@@ -12,7 +12,7 @@ function [ isHumanBoundingBox ] = FilterNonHumanMSER( leftTopx, leftTopy, rightD
         %height >= width
         %idea ration is w/h ~0.5
         ratio = width/height;
-        if ratio > 0.3 && ratio < 0.7
+        if ratio > 0.15 && ratio < 0.85
             isHumanBoundingBox = true;
         else 
             isHumanBoundingBox = false;
