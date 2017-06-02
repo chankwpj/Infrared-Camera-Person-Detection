@@ -2,13 +2,16 @@ function [Mdl] = TrainNaiveBayesClassifier(positiveImagePaths, negativeImagePath
 %Getting positive and negative data set to train NaiveBasesClassifier by
 %Generate DCT discriptor of each data and feed it to Bayes Classifier
 
+
 index = 1;
 labels = [];
 numberOfData = length(positiveImagePaths) + length(negativeImagePaths);
 
 %% Generating Negative DCT Descriptor %%
+t1 = datetime('now');
 numberOfImages = length(negativeImagePaths);
 for i_file = 1:numberOfImages
+    i_file
     % Read image
     im = imread(char(negativeImagePaths(i_file))); 
     if (length(size(im)) >= 3)
@@ -43,6 +46,8 @@ for i_file = 1:numberOfImages
     
     
 end
+t2 = datetime('now');
+t2 - t1
 %% Generating Positive DCT Descriptor %%
 numberOfImages = length(positiveImagePaths);
 for i_file = 1:numberOfImages

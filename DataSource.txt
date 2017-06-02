@@ -1,0 +1,10 @@
+http://projects.asl.ethz.ch/datasets/doku.php?id=ir%3Airicra2014
+http://www.polymtl.ca/litiv/en/vid/
+http://vcipl-okstate.org/pbvs/bench/
+
+Sempach-7 for test
+6 - neg 1 - 132
+5 - neg all
+
+
+3m 4s 1:255 negative traininng
