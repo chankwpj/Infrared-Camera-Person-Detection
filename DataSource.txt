@@ -1,0 +1,12 @@
+http://projects.asl.ethz.ch/datasets/doku.php?id=ir%3Airicra2014
+http://www.polymtl.ca/litiv/en/vid/
+http://vcipl-okstate.org/pbvs/bench/
+
+
+43 min for all neg training
+28 min for all neg training with 2 workers
+
+8 min 45 s for test all T1 images
+4 min for test all T1 images with 2 workers
+
+R1 - 0.65 acc
