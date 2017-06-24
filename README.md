@@ -5,12 +5,12 @@ Project aims to recognize person with low-resolution camera
 3. Naive Bayes classifier as recognition
 
 The steps are based on the following paper
-[https://pdfs.semanticscholar.org/f376/711bbe5cc71089e0c74982cafed5f6bdae79.pdf?_ga=1.49846566.1631971690.1490113648]
+https://pdfs.semanticscholar.org/f376/711bbe5cc71089e0c74982cafed5f6bdae79.pdf?_ga=1.49846566.1631971690.1490113648
 
 Data Source:
-[http://projects.asl.ethz.ch/datasets/doku.php?id=ir%3Airicra2014]
-[http://www.polymtl.ca/litiv/en/vid/]
-[http://vcipl-okstate.org/pbvs/bench/]
+http://projects.asl.ethz.ch/datasets/doku.php?id=ir%3Airicra2014
+http://www.polymtl.ca/litiv/en/vid/
+http://vcipl-okstate.org/pbvs/bench/
 
 The used training data and testing data are zipped as Training.zip and Testing.zip
 
