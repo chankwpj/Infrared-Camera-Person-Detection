@@ -29,5 +29,5 @@ files = dir(fullfile(path_root,'*.jpg'));
 ```
 
 Methods
-TestUseClassifierM, TrainNaiveBayesClassifierP are parallelize version which require Parallel Computing Toolbox 
 TestUseClassifier TrainNaiveBayesClassifier are general version which not require Parallel Computing Toolbox 
+TestUseClassifierM, TrainNaiveBayesClassifierP are parallelize version which require Parallel Computing Toolbox, it is still in develope prcoess and not ready to use due to race condition is not well tested.
